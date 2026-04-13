@@ -808,10 +808,7 @@
       top: 1rem;
       left: 50%;
       transform: translateX(-50%);
-      /* Use 100svw (small viewport width) so the navbar width doesn't
-         jump when the mobile browser chrome shows/hides.
-         Fall back to 100vw - 2.5rem for browsers without svw support. */
-      width: calc(100svw - 2.5rem);
+      width: calc(100% - 2.5rem);
       max-width: 1200px;
       z-index: 900;
       transition: opacity .4s, transform .4s;
