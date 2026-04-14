@@ -2915,25 +2915,6 @@
       border-left-color: rgba(99, 102, 241, .25);
       border-right-color: transparent;
     }
-/* ── hs-tab swatch labels — always readable ── */
-    .hs-sw-label {
-      color: var(--txt);
-      font-weight: 700;
-      opacity: .9;
-    }
-
-    .hs-sw-val {
-      color: var(--muted);
-      opacity: 1;
-    }
-
-    [data-theme="light"] .hs-sw-label {
-      color: #111 !important;
-    }
-
-    [data-theme="light"] .hs-sw-val {
-      color: #555 !important;
-    }
 
 
     /* ── Hero entrance — pure CSS, zero JS transforms on buttons ── */
@@ -3027,16 +3008,7 @@
       }
     }
 
-    /* ── Focus Visible Styles (WCAG 2.1 AA) ── */
-    :focus-visible {
-      outline: 2px solid rgba(255,255,255,.8);
-      outline-offset: 3px;
-    .btn:focus-visible,
-    .nav-link:focus-visible,
-    .social-btn:focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 4px;
-    }
+    
 
   </style>
   <!-- Prerender hint for likely navigation -->
