@@ -58,7 +58,7 @@
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
-  
+ 
   <!-- ── Schema.org structured data ── -->
   <script type="application/ld+json">
 {
@@ -2253,9 +2253,9 @@ section.grid-bg::before {
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
- <span class="mm-top">
+ <div class="mm-top">
      <button id="closeMenu" class="mm-close">✗</button>
- </span>
+ </div>
     <nav class="mm-nav">
       <a href="/Home/" style="font-size:2rem;font-weight:800;color:var(--accent);">Home</a>
       <a href="/About/" style="font-size:2rem;font-weight:800;color:var(--muted);">About</a>
@@ -2263,10 +2263,9 @@ section.grid-bg::before {
       <a href="/Work/" style="font-size:2rem;font-weight:800;color:var(--muted);">Work</a>
       <a href="/Contact/" style="font-size:2rem;font-weight:800;color:var(--muted);">Contact</a>
       <a href="/Blog/" style="font-size:2rem;font-weight:800;color:var(--muted);">Blog</a>
- 
     </nav>
     
-    <a href="/Contact/" class="btn btn-white mm-cta">Start a project</a>
+   
   </div>
 
 
@@ -3078,7 +3077,7 @@ We design and build websites that are fast, purposeful, and easy to hand off. An
               </div>
               <div>
                 <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;">Currently Accepting Projects</div>
-                <div style="font-size:.72rem;color:var(--muted);margin-top:.1rem;"><a href="/cdn-cgi/l/email-protection#3a525f5656557a525b49525f4849435459145354" style="color:inherit;"><span class="__cf_email__" data-cfemail="254d4049494a654d44564d4057565c4b460b4c4b">[email&#160;protected]</span></a></div>
+                <div style="font-size:.72rem;color:var(--muted);margin-top:.1rem;"><a href="mailto:hello@hashersync.in" style="color:inherit;">hello@hashersync.in</a></div>
               </div>
             </div>
           </div>
@@ -3405,7 +3404,7 @@ We design and build websites that are fast, purposeful, and easy to hand off. An
       </div>
       <div class="footer-col">
         <h4 class="footer-heading">Contact</h4>
-        <span class="footer-text"><a href="/cdn-cgi/l/email-protection#7a121f1616153a121b09121f0809031419541314" style="color:inherit;"><span class="__cf_email__" data-cfemail="d6beb3babab996beb7a5beb3a4a5afb8b5f8bfb8">[email&#160;protected]</span></a></span>
+        <span class="footer-text"><a href="mailto:hello@hashersync.in" style="color:inherit;">hello@hashersync.in</a></span>
         <span class="footer-text">+91 8109296838</span>
         <span class="footer-text">India</span>
       </div>
@@ -3418,7 +3417,32 @@ We design and build websites that are fast, purposeful, and easy to hand off. An
       </div>
     </div>
   </footer>
-
+<script>
+// Instant mm-nav: Close + navigate (no delay)
+document.querySelectorAll('.mm-nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const href = this.getAttribute('href');
+    
+    // Instant close + unlock scroll
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    
+    // Instant navigate
+    if (href === '#') window.scrollTo({ top: 0, behavior: 'instant' });
+    else if (href.startsWith('#')) {
+      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.href = href;
+    }
+  });
+});
+</script>
+  
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   
     // ── 2. Page loader ──
@@ -3664,4 +3688,7 @@ document.addEventListener('keydown', function (e) {
     }
   })();
   </script>
-<scri
+
+</body>
+
+</html>
