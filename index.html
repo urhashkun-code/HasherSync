@@ -999,6 +999,37 @@
 .navbar {
   z-index: 950 !important;  /* > menu 800 */
 }
+    /* mm-close: Down + Perfect center X (44x44px) */
+#closeMenu, .mm-close {
+  position: static !important;     /* Kill absolute → flows in .mm-top flex */
+  top: auto !important; right: auto !important;
+  z-index: auto !important;        /* Navbar wins z-index */
+  margin-left: auto !important;    /* Push right */
+  width: 44px !important; height: 44px !important;
+  display: flex !important;
+  align-items: center !important;  /* Vertical perfect center */
+  justify-content: center !important; /* Horizontal perfect X center */
+  font-size: 1.5rem !important;    /* Crisp X size */
+  line-height: 1 !important;
+  padding: 0 !important;
+}
+
+/* .mm-top: Navbar-safe padding + flex perfect */
+.mm-top {
+  padding-top: 2rem !important;    /* ↓ More down (navbar + buffer) */
+  padding-bottom: 1rem !important;
+  margin: 0 !important;
+  gap: 1.25rem !important;
+  align-items: center !important;
+}
+
+/* Navbar stays king */
+.navbar { z-index: 999 !important; }  /* > menu 800 */
+
+/* Mobile extra safe */
+@media (max-width: 767px) {
+  .mm-top { padding-top: 2.25rem !important; }  /* Notch phones */
+}
     /* Extra mobile safeguards */
     -webkit-overflow-scrolling: touch;
   }
