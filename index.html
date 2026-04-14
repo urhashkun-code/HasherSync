@@ -978,6 +978,27 @@
 }
 @media (hover: none) and (pointer: coarse) {
   .mobile-menu {
+    /* Mobile menu: mm-close below navbar */
+#closeMenu, .mm-close {
+  position: static !important;  /* Remove absolute → flows in .mm-top */
+  top: auto !important;
+  right: auto !important;
+  z-index: auto !important;
+  margin-left: auto;  /* Push right in flex */
+  order: 1;  /* mm-close after logo/title */
+}
+
+/* .mm-top: Extra safe spacing */
+.mm-top {
+  padding-top: 1rem !important;  /* Navbar clearance */
+  margin-top: 1.5rem !important;
+  gap: 1rem;
+}
+
+/* Navbar always above menu */
+.navbar {
+  z-index: 950 !important;  /* > menu 800 */
+}
     /* Extra mobile safeguards */
     -webkit-overflow-scrolling: touch;
   }
