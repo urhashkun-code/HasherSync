@@ -2849,8 +2849,35 @@ document.addEventListener('keydown', function (e) {
     document.getElementById('closeMenu').click();
   }
 });
-    
+
   </script>
+  
+  <script>
+// Hamburger OPEN - Lock body scroll (CRITICAL for overlay)
+document.getElementById('menuBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  const mmScrollY = window.scrollY;
+  document.getElementById('mobileMenu').classList.add('open');
+  
+  // LOCK BODY - This prevents hero scroll/push
+  document.body.style.overflow = 'hidden';
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${mmScrollY}px`;
+  document.body.style.width = '100%';
+});
+
+// Close UNLOCK (already there)
+document.getElementById('closeMenu').addEventListener('click', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  window.scrollTo(0, mmScrollY || 0);
+});
+</script>
 </body>
 
 </html>
