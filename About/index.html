@@ -2869,86 +2869,22 @@
     height: auto;
   }
 }
-    /* MOBILE HERO FIX - Full height + navbar clearance */
-@media (max-width: 768px) {
-  .hero {
-    min-height: 100dvh !important; /* Dynamic viewport - no address bar shrinkage */
-    padding-top: 6.5rem !important; /* Clears fixed navbar (top:1rem + padding) */
-    position: relative;
-    z-index: 1;
-    overflow: visible !important; /* Prevent clipping */
+    @media (max-width: 768px) {
+  /* Safe hero force - adjust YOUR exact class after inspect */
+  main section:first-child,
+  .hero,
+  [class*="hero"] {
+    min-height: 100dvh !important;
+    padding-top: 6rem !important;
   }
   
-  /* Force content visibility if JS animations stuck */
-  .hero > * {
+  /* Just in case opacity issue */
+  h1, h2 {
     opacity: 1 !important;
-    transform: none !important;
-  }
-  
-  /* Extra small phones */
-  @media (max-width: 480px) {
-    .hero {
-      min-height: 100svh !important; /* Small viewport height */
-      padding: 7rem 1rem 4rem !important;
-    }
-  }
-}
-
-/* Navbar adjustment if needed */
-@media (max-width: 768px) {
-  .navbar {
-    z-index: 1000 !important; /* Above hero */
   }
 }
 </style>
    </style>
-
-  
-  <style id="hs-site-polish">
-  :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-  a, button { -webkit-tap-highlight-color: transparent; }
-  img { max-width: 100%; height: auto; }
-  .hero, .section { content-visibility: auto; contain-intrinsic-size: 900px; }
- html { scroll-behavior: smooth; }
-  body { text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
-  img, video, iframe { max-width: 100%; height: auto; }
-  :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-  .hero, .section, .footer, .faq-item, .service-card, .case-card, .pricing-card { content-visibility: auto; contain-intrinsic-size: 800px; }
- 
-  .theme-toggle, .hamburger, .social-btn { min-width: 12px; min-height: 12px; }
-  .mobile-menu { display: none !important; }
-  @media (max-width: 767px) { .nav-links, #desktopNav, .nav-cta { display: none !important; } .mobile-menu.open { display: flex !important; } }
-
-    /* ULTIMATE MOBILE HERO FIX - Targets main/content + forces visibility */
-@media screen and (max-width: 768px) {
-  /* Target possible hero selectors */
-  main, main > *:first-child, [class*="hero"], [id*="hero"], 
-  section:first-of-type, .hero-section, article:first-child {
-    display: block !important;
-    min-height: 100dvh !important;
-    height: auto !important;
-    padding: 7rem 1.5rem 4rem !important;
-    margin: 0 !important;
-    position: relative !important;
-    z-index: 2 !important;
-    overflow: visible !important;
-    background: var(--bg) !important;
-  }
-  
-  /* Force ALL hero-like content visible */
-  h1, h2, .hero-h1, [class*="hero-"], .lbl {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    position: relative !important;
-    z-index: 10 !important;
-    color: var(--txt) !important;
-  }
-  
-  /* Navbar stays above */
-  .navbar { z-index: 999 !important; }
-}
-</style>
 </head>
 
 <body>
