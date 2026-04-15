@@ -2869,6 +2869,37 @@
     height: auto;
   }
 }
+    /* MOBILE HERO FIX - Full height + navbar clearance */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100dvh !important; /* Dynamic viewport - no address bar shrinkage */
+    padding-top: 6.5rem !important; /* Clears fixed navbar (top:1rem + padding) */
+    position: relative;
+    z-index: 1;
+    overflow: visible !important; /* Prevent clipping */
+  }
+  
+  /* Force content visibility if JS animations stuck */
+  .hero > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  /* Extra small phones */
+  @media (max-width: 480px) {
+    .hero {
+      min-height: 100svh !important; /* Small viewport height */
+      padding: 7rem 1rem 4rem !important;
+    }
+  }
+}
+
+/* Navbar adjustment if needed */
+@media (max-width: 768px) {
+  .navbar {
+    z-index: 1000 !important; /* Above hero */
+  }
+}
 </style>
    </style>
 
