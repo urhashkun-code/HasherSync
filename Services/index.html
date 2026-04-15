@@ -3592,30 +3592,31 @@
             </div>
           </div>
         </div>
-<!-- Right: Dashboard Illustration -->
-  <div style="display:flex;flex-direction:column;gap:1.25rem;">
-    <div class="glass" style="border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--brd);">
-      <div style="background:rgba(255,255,255,.03);border-bottom:1px solid var(--brd);padding:.875rem 1.25rem;">
-        <p style="font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);">Maintenance Dashboard</p>
-        <p style="font-size:.88rem;font-weight:700;">Site Health: <span style="color:#4ade80;">100% ✓</span></p>
-      </div>
-      <div style="padding:1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:1rem;">
+<!-- Right: Dashboard Illustration - FIXED NO OVERFLOW -->
+<div style="height:320px;display:flex;flex-direction:column;gap:0;">
+  <div class="glass" style="flex:1;border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--brd);display:flex;flex-direction:column;">
+    <div style="background:rgba(255,255,255,.03);border-bottom:1px solid var(--brd);padding:.75rem 1rem;flex-shrink:0;">
+      <p style="font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);">Maintenance Dashboard</p>
+      <p style="font-size:.85rem;font-weight:700;">Site Health: <span style="color:#4ade80;">100% ✓</span></p>
+    </div>
+    <div style="padding:1rem;flex:1;display:flex;flex-direction:column;gap:.75rem;justify-content:center;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;">
         <div style="text-align:center;">
-          <p style="font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);">Uptime</p>
-          <p style="font-size:1.1rem;font-weight:800;">99.98%</p>
+          <p style="font-size:.55rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);">Uptime</p>
+          <p style="font-size:1rem;font-weight:800;color:var(--txt);">99.98%</p>
         </div>
         <div style="text-align:center;">
-          <p style="font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);">Revisions</p>
-          <p style="font-size:1.1rem;font-weight:800;">During Dev</p>
+          <p style="font-size:.55rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);">Revisions</p>
+          <p style="font-size:1rem;font-weight:800;color:var(--txt);">During Dev</p>
         </div>
         <div style="text-align:center;">
-          <p style="font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);">Support</p>
-          <p style="font-size:1.1rem;font-weight:800;">1 Month Free</p>
+          <p style="font-size:.55rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);">Support</p>
+          <p style="font-size:1rem;font-weight:800;color:var(--txt);">1 Month Free</p>
         </div>
       </div>
-      <div style="border-top:1px solid var(--brd);padding:.875rem 1.25rem;font-size:.8rem;color:var(--muted);text-align:center;">
-        Ongoing support available
-      </div>
+    </div>
+    <div style="border-top:1px solid var(--brd);padding:.75rem 1rem;flex-shrink:0;font-size:.75rem;color:var(--muted);text-align:center;">
+      Ongoing support available
     </div>
   </div>
 </div>
