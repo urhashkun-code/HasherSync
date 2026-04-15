@@ -129,6 +129,7 @@
           "@type": "BlogPosting",
           "headline": "Why Micro-Influencers Drive Better ROI Than Celebrities",
           "datePublished": "2025-12-10",
+          "dateModified": "2025-12-10",
           "author": {
             "@type": "Organization",
             "@id": "https://hashersync.in/#organization"
@@ -160,6 +161,7 @@
 }
 </script>
 
+  <link rel="preload" href="https://fonts.gstatic.com/s/plusjakartasans/v8/LDIoaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_KU7NShXUEKi4Rw.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.tailwindcss.com" />
@@ -2078,6 +2080,46 @@
   right: auto !important;
   transform: translateY(1px) !important;
 }
+
+    /* ── Mobile Menu ── */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 9500;
+      background: var(--bg);
+      -webkit-backdrop-filter: blur(40px) saturate(180%);
+      backdrop-filter: blur(40px) saturate(180%);
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem 1.75rem 2.5rem;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      transform: translateY(-12px);
+      transition: opacity .28s ease, transform .28s cubic-bezier(.2,0,.2,1), visibility .28s;
+      will-change: opacity, transform;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .mm-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      padding-top: 0.25rem;
+    }
+
+    @media (min-width: 769px) {
+      .mobile-menu { display: none !important; }
+    }
   </style>
 </head>
 
@@ -2149,13 +2191,13 @@
             </svg></span>
         </button>
         <a href="/Contact/" class="btn btn-white nav-cta">Get Started</a>
-        <button id="menuBtn" class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        <button id="menuBtn" class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
 
   <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
     <div class="mm-top">
       <div class="nav-logo">
         <img
@@ -2791,8 +2833,7 @@
     (function () { var cur = document.getElementById('cur'); if (!cur || !window.matchMedia('(pointer:fine)').matches) return; var mx = -200, my = -200, half = 11; document.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; cur.classList.add('on'); }, { passive: true }); (function tick() { cur.style.transform = 'translate(' + (mx - half) + 'px,' + (my - half) + 'px)'; requestAnimationFrame(tick); })(); document.querySelectorAll('a,button,[onclick],.card').forEach(function (el) { el.addEventListener('mouseenter', function () { cur.classList.add('big'); }, { passive: true }); el.addEventListener('mouseleave', function () { cur.classList.remove('big'); }, { passive: true }); }); })();
     document.getElementById('themeToggle').addEventListener('click', function () { var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', t); localStorage.setItem('hs-theme', t); });
     (function () { var nav = document.getElementById('navbar'); var hideT = null; function show() { nav.classList.remove('hide'); clearTimeout(hideT); nav.classList.toggle('scrolled', window.scrollY > 40); if (window.scrollY > 120) { hideT = setTimeout(function () { nav.classList.add('hide'); }, 2600); } } window.addEventListener('scroll', show, { passive: true }); document.addEventListener('mousemove', function (e) { if (e.clientY < 90) show(); }, { passive: true }); nav.addEventListener('mouseenter', function () { clearTimeout(hideT); nav.classList.remove('hide'); }); nav.addEventListener('mouseleave', show); document.addEventListener('touchstart', show, { passive: true }); })();
-    document.getElementById('menuBtn').addEventListener('click', function () { document.getElementById('mobileMenu').classList.add('open'); });
-    document.getElementById('closeMenu').addEventListener('click', function () { document.getElementById('mobileMenu').classList.remove('open'); });
+
     (function () { if (!('IntersectionObserver' in window)) { document.querySelectorAll('.rv,.rv-l').forEach(function (el) { el.classList.add('in'); }); return; } var io = new IntersectionObserver(function (entries) { entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .12, rootMargin: '0px 0px -40px 0px' }); document.querySelectorAll('.rv,.rv-l').forEach(function (el) { io.observe(el); }); })();
     window.addEventListener('load', function () {
       if (typeof gsap === 'undefined') return;
@@ -2802,7 +2843,6 @@
       });
     });
 
-       // ── 6. Mobile menu (improved) ──
 var _mmScrollY = 0;
 
 // Open menu + lock body scroll (no wobble)
@@ -2810,6 +2850,8 @@ document.getElementById('menuBtn').addEventListener('click', function (e) {
   e.preventDefault();
   _mmScrollY = window.scrollY;
   document.getElementById('mobileMenu').classList.add('open');
+  document.getElementById('menuBtn').setAttribute('aria-expanded', 'true');
+  setTimeout(function(){ var first = document.querySelector('#mobileMenu .mm-close'); if(first) first.focus(); }, 50);
   document.body.style.overflow = 'hidden';
   document.body.style.position = 'fixed';
   document.body.style.top = '-' + _mmScrollY + 'px';
@@ -2821,6 +2863,8 @@ document.getElementById('closeMenu').addEventListener('click', function (e) {
   e.preventDefault();
   e.stopPropagation();
   document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('menuBtn').setAttribute('aria-expanded', 'false');
+  document.getElementById('menuBtn').focus();
   document.body.style.overflow = '';
   document.body.style.position = '';
   document.body.style.top = '';
@@ -2828,11 +2872,24 @@ document.getElementById('closeMenu').addEventListener('click', function (e) {
   window.scrollTo(0, _mmScrollY);
 });
 
-// Close on nav link clicks (UX best practice)
+// Close on nav link clicks - close menu then navigate
 document.querySelectorAll('#mobileMenu .mm-nav a').forEach(link => {
   link.addEventListener('click', function (e) {
-    e.preventDefault(); // If links are anchors
-    document.getElementById('closeMenu').click(); // Reuse close handler
+    const href = link.getAttribute('href');
+    if (href && !href.startsWith('#')) {
+      // External link: close menu, then navigate
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('menuBtn').setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo(0, _mmScrollY);
+      // Navigation happens naturally
+    } else {
+      e.preventDefault();
+      document.getElementById('closeMenu').click();
+    }
   });
 });
 
@@ -2851,87 +2908,6 @@ document.addEventListener('keydown', function (e) {
 });
 
   </script>
-  
-  <script>
-// Hamburger OPEN - Lock body scroll (CRITICAL for overlay)
-document.getElementById('menuBtn').addEventListener('click', function(e) {
-  e.preventDefault();
-  const mmScrollY = window.scrollY;
-  document.getElementById('mobileMenu').classList.add('open');
-  
-  // LOCK BODY - This prevents hero scroll/push
-  document.body.style.overflow = 'hidden';
-  document.body.style.position = 'fixed';
-  document.body.style.top = `-${mmScrollY}px`;
-  document.body.style.width = '100%';
-});
-
-// Close UNLOCK (already there)
-document.getElementById('closeMenu').addEventListener('click', function(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  document.getElementById('mobileMenu').classList.remove('open');
-  document.body.style.overflow = '';
-  document.body.style.position = '';
-  document.body.style.top = '';
-  document.body.style.width = '';
-  window.scrollTo(0, mmScrollY || 0);
-});
-</script>
-  <script>
-// 1. Hamburger OPEN - Lock scroll (overlay mode)
-let mmScrollY = 0;
-document.getElementById('menuBtn').addEventListener('click', (e) => {
-  e.preventDefault();
-  mmScrollY = window.scrollY;
-  document.getElementById('mobileMenu').classList.add('open');
-  // CRITICAL: Body lock
-  document.body.style.overflow = 'hidden';
-  document.body.style.position = 'fixed';
-  document.body.style.top = `-${mmScrollY}px`;
-  document.body.style.width = '100%';
-});
-
-// 2. Close X - Unlock scroll
-document.getElementById('closeMenu').addEventListener('click', (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-  document.getElementById('mobileMenu').classList.remove('open');
-  document.body.style.overflow = '';
-  document.body.style.position = '';
-  document.body.style.top = '';
-  document.body.style.width = '';
-  window.scrollTo(0, mmScrollY || 0);
-});
-
-// 3. Nav links - Close + navigate (instant)
-document.querySelectorAll('.mm-nav a').forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const href = link.getAttribute('href');
-    // Close + unlock
-    document.getElementById('closeMenu').click();
-    // Navigate
-    if (href === '#') window.scrollTo({ top: 0, behavior: 'instant' });
-    else if (href.startsWith('#')) document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-    else window.location.href = href;
-  });
-});
-
-// 4. Backdrop click (premium UX)
-document.getElementById('mobileMenu').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('mobileMenu')) {
-    document.getElementById('closeMenu').click();
-  }
-});
-
-// 5. ESC key
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && document.getElementById('mobileMenu').classList.contains('open')) {
-    document.getElementById('closeMenu').click();
-  }
-});
-</script>
   
 </body>
 
