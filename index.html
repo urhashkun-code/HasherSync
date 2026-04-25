@@ -60,6 +60,19 @@
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
+
+
+  <script>
+(function () {
+  try {
+    var saved = localStorage.getItem('hs-theme');
+    var theme = saved ? saved : 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
   
   <!-- ── Schema.org structured data ── -->
   <script type="application/ld+json">
