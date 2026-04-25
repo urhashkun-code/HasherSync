@@ -437,7 +437,73 @@
     [data-theme="light"] .cursor.big {
       border-color: rgba(0, 0, 0, .25);
     }
+/* STRONGER LIGHT MODE HERO VISUALS */
+[data-theme="light"] .hero::before {
+  opacity: 1;
+}
 
+[data-theme="light"] .hero::after {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.075) 1px, transparent 1px);
+}
+
+[data-theme="light"] .hero-spotlight {
+  background: radial-gradient(
+    600px circle at var(--mx, 50%) var(--my, 30%),
+    rgba(0, 0, 0, 0.085) 0,
+    transparent 60%
+  );
+}
+
+[data-theme="light"] .hero-canvas {
+  opacity: 1;
+}
+
+[data-theme="light"] .hblob,
+[data-theme="light"] .hblob-lg {
+  filter: blur(72px);
+  opacity: 1 !important;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.11) 0, transparent 62%) !important;
+}
+
+[data-theme="light"] .hring {
+  border-color: rgba(0, 0, 0, 0.18) !important;
+  border-width: 1px;
+}
+
+[data-theme="light"] .hring.dash {
+  border-color: rgba(0, 0, 0, 0.14) !important;
+}
+
+[data-theme="light"] .horbit {
+  border-color: rgba(0, 0, 0, 0.18) !important;
+}
+
+[data-theme="light"] .horbit.dashed,
+[data-theme="light"] .horbit-3 {
+  border-color: rgba(0, 0, 0, 0.14) !important;
+}
+
+[data-theme="light"] .horbit::before {
+  background: rgba(0, 0, 0, 0.88) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.32) !important;
+}
+
+[data-theme="light"] .horbit-center {
+  background: rgba(0, 0, 0, 0.24) !important;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.16) !important;
+}
+
+[data-theme="light"] .hdot {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="light"] .harc circle {
+  stroke: rgba(0, 0, 0, 0.4) !important;
+  stroke-width: 1.4px;
+}
+    
     /* Light mode adjustments for hero background & orbits */
     [data-theme="light"] #hero::before {
       opacity: 0.8;
