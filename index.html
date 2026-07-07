@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be right back...</title>
+<style>
+  :root {
+    --navy: #1c2b3a;
+    --navy-dim: #5b6b7a;
+    --rust: #a34a3d;
+    --grid: rgba(28,43,58,0.22);
+    --line: #c3cbd2;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #ffffff;
+    font-family: 'Iowan Old Style', 'Georgia', serif;
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  .wrap {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6vh 5vw;
+    background-color: #ffffff;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      linear-gradient(rgba(28,43,58,0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,43,58,0.09) 1px, transparent 1px);
+    background-size: 240px 240px, 240px 240px, 40px 40px, 40px 40px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+  }
+
+  .corner-mark {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-top: 2px solid var(--navy);
+    border-left: 2px solid var(--navy);
+    opacity: 0.55;
+  }
+  .corner-mark.tl { top: 28px; left: 28px; }
+  .corner-mark.tr { top: 28px; right: 28px; transform: rotate(90deg); }
+  .corner-mark.bl { bottom: 28px; left: 28px; transform: rotate(-90deg); }
+  .corner-mark.br { bottom: 28px; right: 28px; transform: rotate(180deg); }
+
+  .coord {
+    position: absolute;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--navy-dim);
+    opacity: 0.75;
+  }
+  .coord.top { top: 28px; left: 50%; transform: translateX(-50%); }
+  .coord.bottom { bottom: 28px; left: 50%; transform: translateX(-50%); }
+
+  .sign-post {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 620px;
+    width: 100%;
+  }
+
+  /* hanging chain/hook */
+  .hook {
+    width: 2px;
+    height: 44px;
+    background: var(--navy-dim);
+    margin-bottom: -2px;
+  }
+  .hook::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: -7px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--navy-dim);
+    border-radius: 50%;
+    background: #ffffff;
+  }
+
+  .sign {
+    border: 1.5px solid var(--navy);
+    background: #ffffff;
+    padding: 3.4rem 3.2rem 2.8rem;
+    box-shadow:
+      0 30px 70px -20px rgba(28,43,58,0.25),
+      0 0 0 1px rgba(28,43,58,0.04);
+    transform-origin: top center;
+    animation: swing 7s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+    width: min(90vw, 560px);
+  }
+
+  .sign::before,
+  .sign::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--navy);
+    opacity: 0.45;
+  }
+  .sign::before { top: 14px; left: 14px; }
+  .sign::after { top: 14px; right: 14px; }
+
+  @keyframes swing {
+    0%, 100% { transform: rotate(-1.1deg); }
+    50% { transform: rotate(1.1deg); }
+  }
+
+  .stamp {
+    position: absolute;
+    top: -22px;
+    right: -18px;
+    width: 92px;
+    height: 92px;
+    border: 2.5px solid var(--rust);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(14deg);
+    color: var(--rust);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    text-align: center;
+    line-height: 1.15;
+    background: rgba(255,255,255,0.9);
+    z-index: 2;
+  }
+  .stamp span {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+  }
+  .stamp .stamp-main {
+    font-size: 0.92rem;
+    letter-spacing: 0.14em;
+    display: block;
+    margin: 2px 0;
+  }
+  .stamp::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px dashed var(--rust);
+    border-radius: 50%;
+    opacity: 0.6;
+  }
+
+  .eyebrow {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--navy-dim);
+    margin: 0 0 1.1rem;
+  }
+
+  h1 {
+    font-size: clamp(1.9rem, 7vw, 3.6rem);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    margin: 0 0 0.4rem;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+
+  .dots {
+    display: inline-block;
+    letter-spacing: 0.12em;
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: var(--navy);
+    opacity: 0.3;
+    margin: 1.6rem 0 1.5rem;
+  }
+
+  p.notice {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(0.88rem, 3.6vw, 1.02rem);
+    line-height: 1.7;
+    color: var(--navy-dim);
+    margin: 0;
+    max-width: 440px;
+  }
+
+  p.notice .closed {
+    color: var(--rust);
+    font-weight: 600;
+  }
+
+  .footnote {
+    margin-top: 2.2rem;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: #8a94a0;
+  }
+
+  .tape {
+    position: absolute;
+    width: 64px;
+    height: 22px;
+    background: rgba(28,43,58,0.08);
+    border: 1px solid rgba(28,43,58,0.15);
+  }
+  .tape.left { top: -12px; left: 42px; transform: rotate(-8deg); }
+  .tape.right { top: -12px; right: 42px; transform: rotate(8deg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sign { animation: none; }
+  }
+
+  /* Tablet and below */
+  @media (max-width: 600px) {
+    .wrap { padding: 5vh 5vw; }
+    .coord, .corner-mark { display: none; }
+    .sign { padding: 2.6rem 1.8rem 2.2rem; }
+    .stamp { width: 76px; height: 76px; top: -18px; right: -10px; }
+    .stamp .stamp-main { font-size: 0.8rem; }
+    .stamp span { font-size: 0.55rem; }
+  }
+
+  /* Small phones */
+  @media (max-width: 380px) {
+    .wrap { padding: 4vh 4vw; }
+    .sign { padding: 2.2rem 1.3rem 1.8rem; width: min(94vw, 560px); }
+    .hook { height: 32px; }
+    .eyebrow { font-size: 0.58rem; letter-spacing: 0.24em; margin-bottom: 0.8rem; }
+    .rule { margin: 1.2rem 0 1.1rem; }
+    .stamp { width: 62px; height: 62px; top: -14px; right: -8px; }
+    .stamp .stamp-main { font-size: 0.66rem; margin: 1px 0; }
+    .stamp span { font-size: 0.46rem; letter-spacing: 0.1em; }
+    .footnote { margin-top: 1.6rem; font-size: 0.64rem; }
+    .tape { width: 44px; height: 16px; }
+    .tape.left { left: 20px; }
+    .tape.right { right: 20px; }
+  }
+
+  /* Very small / down to ~300px */
+  @media (max-width: 320px) {
+    .sign { padding: 1.8rem 1rem 1.5rem; }
+    h1 { font-size: 1.6rem; }
+    .stamp { display: none; }
+    p.notice { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="corner-mark tl"></div>
+    <div class="corner-mark tr"></div>
+    <div class="corner-mark bl"></div>
+    <div class="corner-mark br"></div>
+    <div class="coord top">STATUS &mdash; OFFLINE</div>
+    <div class="coord bottom">HASHERSYNC.IN</div>
+
+    <div class="sign-post">
+      <div class="hook"></div>
+      <div class="sign">
+        <div class="tape left"></div>
+        <div class="tape right"></div>
+        <p class="eyebrow">Gone for now</p>
+        <h1>Be right back<span class="dots">.....</span></h1>
+        <div class="rule"></div>
+        <p class="notice">
+          Due to unfortunate circumstances, this agency has
+          <span class="closed">closed down</span>.
+          Thank you to everyone who was part of the journey.
+        </p>
+        <div class="footnote">The lights are off, but the sign hasn't come down yet.</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
